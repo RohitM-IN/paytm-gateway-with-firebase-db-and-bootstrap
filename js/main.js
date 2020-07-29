@@ -1,7 +1,7 @@
 //Mobile Number = Customer ID (Value Clone)
 document.getElementById("MOBILE_NUMBER").addEventListener("change",function(){
     document.getElementById("CUST_ID").value = document.getElementById("MOBILE_NUMBER").value;
-})
+});
 bootstrapValidate("#DONOR_NAME", "required:Please fill out this field", function (isValid) {
     var element = document.getElementById("DONOR_NAME_valid");
     var main = document.getElementById("DONOR_NAME");

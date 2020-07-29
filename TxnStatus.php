@@ -4,8 +4,8 @@
 	header("Expires: 0");
 
 	// following files need to be included
-	require_once("./lib/config_paytm.php");
-	require_once("./lib/encdec_paytm.php");
+	include_once("./lib/config_paytm.php");
+	include_once("./lib/encdec_paytm.php");
 
 	$ORDER_ID = "";
 	$requestParamList = array();
@@ -41,7 +41,7 @@
 		<table style="border: 1px solid black">
 			<tbody class="bg-white">
 				<tr>
-					<td><label>ORDER_ID::*</label></td>
+					<td><label>ORDER_ID:*</label></td>
 					<td><input id="ORDER_ID" tabindex="1" maxlength="20" size="20" name="ORDER_ID" autocomplete="off" value="<?php echo $ORDER_ID ?>">
 					</td>
 				</tr>

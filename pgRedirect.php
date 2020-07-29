@@ -2,8 +2,8 @@
 header("Pragma: no-cache");
 header("Cache-Control: no-cache");
 header("Expires: 0");
-require_once("./lib/config_paytm.php");
-require_once("./lib/encdec_paytm.php");
+include_once("./lib/config_paytm.php");
+include_once("./lib/encdec_paytm.php");
 
 
 
@@ -63,8 +63,9 @@ $checkSum = getChecksumFromArray($paramList,PAYTM_MERCHANT_KEY);
 		<table style="border: 1px solid black;">
 			<tbody>
 			<?php
-			foreach($paramList as $name => $value) {
-				echo '<input type="hidden" name="' . $name .'" value="' . $value . '">';
+			foreach($paramList as $name => $value) { ?>
+				<input type="hidden" name="<?php echo $name ?>" value="<?php echo $value ?>">
+			<?php
 			}
 			?>
 			<input type="hidden" name="CHECKSUMHASH" value="<?php echo $checkSum ?>">

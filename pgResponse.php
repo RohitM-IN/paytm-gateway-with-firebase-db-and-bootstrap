@@ -4,8 +4,8 @@ header("Cache-Control: no-cache");
 header("Expires: 0");
 
 // following files need to be included
-require_once("lib/config_paytm.php");
-require_once("lib/encdec_paytm.php");
+include_once("lib/config_paytm.php");
+include_once("lib/encdec_paytm.php");
 
 $paytmChecksum = "";
 $paramList = array();
@@ -18,14 +18,14 @@ $paytmChecksum = isset($_POST["CHECKSUMHASH"]) ? $_POST["CHECKSUMHASH"] : ""; //
 $isValidChecksum = verifychecksum_e($paramList, PAYTM_MERCHANT_KEY, $paytmChecksum); //will return TRUE or FALSE string.
 
 if($isValidChecksum == "TRUE") {
-	//echo "<b>Checksum matched and following are the transaction details:</b>" . "<br/>";
+	//Checksum matched and following are the transaction details:
 	if ($_POST["STATUS"] == "TXN_SUCCESS") {
-		//echo 'console.log("Transaction status is Success")';
+		//echo "Transaction status is Success";
 		//Process your transaction here as success transaction.
 		//Verify amount & order id received from Payment gateway with your application's order id and amount.
 	}
 	else {
-		//echo 'console.log("Transaction status is failure")';
+		//echo "Transaction status is failure";
 	}
 /*
 	if (isset($_POST) && count($_POST)>0 )
@@ -38,7 +38,6 @@ if($isValidChecksum == "TRUE") {
 */	
 }
 else {
-	//echo 'console.log("Checksum mismatched.")';
 	//Process transaction as suspicious.
 }
 
@@ -57,18 +56,21 @@ else {
 	<table style="border: 1px solid black;">
 		<tbody>
 		<?php
-		foreach($_POST as $paramName =>  $paramValue) {
-			echo '<input type="hidden" name="' . $paramName .'" id="' . $paramName .'" value="' . $paramValue . '">';
-			echo '<input type="hidden" name="NAME" id="NAME" value="'.$_COOKIE['NAME'].'">';
-			echo '<input type="hidden" name="CUST_ID" id="CUST_ID" value="'.$_COOKIE['CUST_ID'].'">';
-			echo '<input type="hidden" name="EMAIL_ID" id="EMAIL_ID" value="'.$_COOKIE['EMAIL_ID'].'">';
-			echo '<input type="hidden" name="Anonymous" id="Anonymous" value="'.$_COOKIE['Anonymous'].'">';
-			if(!isset($_POST['TXNDATE']) && !isset($_POST['GATEWAYNAME'])){
-				echo '<input type="hidden" name="TXNID" id="TXNID" value="NAN">';
-				echo '<input type="hidden" name="PAYMENTMODE" id="PAYMENTMODE" value="NAN">';
-				echo '<input type="hidden" name="TXNDATE" id="TXNDATE" value="NAN">';
-				echo '<input type="hidden" name="GATEWAYNAME" id="GATEWAYNAME" value="NAN">';
-				echo '<input type="hidden" name="BANKTXNID" id="BANKTXNID" value="NAN">';
+		foreach($_POST as $paramName =>  $paramValue) { 
+			?>
+			<input type="hidden" name="<?php echo $paramName ?>" id="<?php echo $paramName ?>" value="<?php echo $paramValue ?>">
+			<input type="hidden" name="NAME" id="NAME" value="<?php echo $_COOKIE['NAME']?>">
+			<input type="hidden" name="CUST_ID" id="CUST_ID" value="<?php echo $_COOKIE['CUST_ID']?>">
+			<input type="hidden" name="EMAIL_ID" id="EMAIL_ID" value="<?php echo $_COOKIE['EMAIL_ID']?>">
+			<input type="hidden" name="Anonymous" id="Anonymous" value="<?php echo $_COOKIE['Anonymous']?>">
+			<?php
+			if(!isset($_POST['TXNDATE']) && !isset($_POST['GATEWAYNAME'])){ ?>
+				<input type="hidden" name="TXNID" id="TXNID" value="NAN">
+				<input type="hidden" name="PAYMENTMODE" id="PAYMENTMODE" value="NAN">
+				<input type="hidden" name="TXNDATE" id="TXNDATE" value="NAN">
+				<input type="hidden" name="GATEWAYNAME" id="GATEWAYNAME" value="NAN">
+				<input type="hidden" name="BANKTXNID" id="BANKTXNID" value="NAN">
+			<?php
 			}
 		}
 		?>

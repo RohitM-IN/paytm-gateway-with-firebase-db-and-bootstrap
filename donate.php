@@ -2,7 +2,7 @@
 	header("Pragma: no-cache");
 	header("Cache-Control: no-cache");
     header("Expires: 0");
-    require_once("./lib/cookie_aleart.php");
+    include_once("./lib/cookie_aleart.php");
 ?>
 <!DOCTYPE html PUBLIC >
 <html>

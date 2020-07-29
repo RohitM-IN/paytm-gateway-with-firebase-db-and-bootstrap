@@ -54,7 +54,7 @@ function submitForm(){
         BANKTXNID:BANKTXNID,
         TXNID:TXNID,
         Anonymous:Anonymous
-    }
+    };
     messagesRef.set(data)
     .then(function() {
         

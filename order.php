@@ -1,8 +1,8 @@
 <?php
 	header("Pragma: no-cache");
 	header("Cache-Control: no-cache");
-    header("Expires: 0");
-    include_once("./lib/cookie_aleart.php");
+    	header("Expires: 0");
+    	include_once("./lib/cookie_aleart.php");
 ?>
 <!DOCTYPE html PUBLIC >
 <html>

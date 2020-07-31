@@ -86,7 +86,7 @@ else {
 	$button = "Try Again";
 	$icon = '<i class="fa fa-times fa-4x fa-inverse" aria-hidden="true"></i>';
 	$color = 'lightcoral';
-	$link = '/donate.php';
+	$link = '/order.php';
 	if($_POST['TXNDATE'] == 'NAN'){
 		$date = '';
 	}else{

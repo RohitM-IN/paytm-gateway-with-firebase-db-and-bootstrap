@@ -34,7 +34,7 @@ $paramList["INDUSTRY_TYPE_ID"] = $INDUSTRY_TYPE_ID;
 $paramList["CHANNEL_ID"] = $CHANNEL_ID;
 $paramList["TXN_AMOUNT"] = $TXN_AMOUNT;
 $paramList["WEBSITE"] = PAYTM_MERCHANT_WEBSITE;
-$paramList["CALLBACK_URL"] = "http://localhost/paytm/pgResponse.php";
+$paramList["CALLBACK_URL"] = "http://localhost/ver_2/pgResponse.php";
 $paramList["EMAIL"] = $EMAIL_ID;
 
 /*
@@ -46,41 +46,49 @@ $checkSum = getChecksumFromArray($paramList,PAYTM_MERCHANT_KEY);
 
 ?>
 <html>
+
 <head>
-<title>Merchant Check Out Page</title>
-<!-- Bootstamp CSS for Spinner -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <title>Merchant Check Out Page</title>
+    <!-- Bootstamp CSS for Spinner -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 </head>
+
 <body>
-	
-	<h1 class='text-center'>Please do not refresh this page...</h1>
-	<div class="d-flex justify-content-center">
-	<i class="fa fa-spinner fa-pulse fa-3x fa-fw text-center"></i>
-	</div>
-		<!-- Finally Sending Data to paytm -->
-		<form method="post" action="<?php echo PAYTM_TXN_URL ?>" name="f1">
-		<table style="border: 1px solid black;">
-			<tbody>
-			<?php
+
+    <h1 class='text-center'>Please do not refresh this page...</h1>
+    <div class="d-flex justify-content-center">
+        <i class="fa fa-spinner fa-pulse fa-3x fa-fw text-center"></i>
+    </div>
+    <!-- Finally Sending Data to paytm -->
+    <form method="post" action="<?php echo PAYTM_TXN_URL ?>" name="f1">
+        <table style="border: 1px solid black;">
+            <tbody>
+                <?php
 			foreach($paramList as $name => $value) { ?>
-				<input type="hidden" name="<?php echo $name ?>" value="<?php echo $value ?>">
-			<?php
+                <input type="hidden" name="<?php echo $name ?>" value="<?php echo $value ?>">
+                <?php
 			}
 			?>
-			<input type="hidden" name="CHECKSUMHASH" value="<?php echo $checkSum ?>">
-			</tbody>
-		</table>
-		<script type="text/javascript">
-			setTimeout(() => {
-				document.f1.submit()
-			}, 2000);
-			
-		</script>
-	</form>
-	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+                <input type="hidden" name="CHECKSUMHASH" value="<?php echo $checkSum ?>">
+            </tbody>
+        </table>
+        <script type="text/javascript">
+        setTimeout(() => {
+            document.f1.submit()
+        }, 2000);
+        </script>
+    </form>
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous">
+    </script>
 </body>
+
 </html>

@@ -1,21 +1,26 @@
 var messagesRef = db.collection("Donations")
 let del = false;
-let snapshot = messagesRef.get().then(snapshots =>
-    snapshots.forEach(doc => {
-        let docdata = doc.data()
-        if (!docdata.Payment_Date) docdata.Payment_Date = "-"
-        if (docdata.Donor_Name == "") docdata.Donor_Name = "-"
-        if (docdata.Email_ID == "") docdata.Email_ID = "-"
-        if (docdata.Donation_Amount == "") docdata.Donation_Amount = "-"
-        if (docdata.Payment_Status == 'TXN_SUCCESS') docdata.Payment_Status = 'Success'
-        else if (docdata.Payment_Status == 'TXN_FAILURE') docdata.Payment_Status = 'Failed'
-        else if (docdata.Payment_Status == '') docdata.Payment_Status = '-'
-        if (docdata.Donation_Amount != '-') docdata.Donation_Amount = parseFloat(docdata.Donation_Amount).toFixed(2)
-        console.log(doc.id, "=>", doc.data())
-        let cell = `<tr></tr><td>${doc.id}</td> <td>${docdata.Donor_Name}</td><td>${docdata.Email_ID}</td><td>${docdata.Payment_Date}</td><td>${docdata.Donation_Amount}</td><td>${docdata.Payment_Status}</td></tr>`
-        createcell(cell)
-    })
-)
+let snapshot
+auth.onAuthStateChanged(user => {
+    if (user) {
+        snapshot = messagesRef.get().then(snapshots =>
+            snapshots.forEach(doc => {
+                let docdata = doc.data()
+                if (!docdata.Payment_Date) docdata.Payment_Date = "-"
+                if (docdata.Donor_Name == "") docdata.Donor_Name = "-"
+                if (docdata.Email_ID == "") docdata.Email_ID = "-"
+                if (docdata.Donation_Amount == "") docdata.Donation_Amount = "-"
+                if (docdata.Payment_Status == 'TXN_SUCCESS') docdata.Payment_Status = 'Success'
+                else if (docdata.Payment_Status == 'TXN_FAILURE') docdata.Payment_Status = 'Failed'
+                else if (docdata.Payment_Status == '') docdata.Payment_Status = '-'
+                if (docdata.Donation_Amount != '-') docdata.Donation_Amount = parseFloat(docdata.Donation_Amount).toFixed(2)
+                let cell = `<tr></tr><td>${doc.id}</td> <td>${docdata.Donor_Name}</td><td>${docdata.Email_ID}</td><td>${docdata.Payment_Date}</td><td>${docdata.Donation_Amount}</td><td>${docdata.Payment_Status}</td></tr>`
+                createcell(cell)
+            })
+        )
+    }
+})
+
 
 function createcell(cell) {
     if (!del) emptytable()

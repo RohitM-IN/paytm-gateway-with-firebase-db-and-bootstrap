@@ -1,11 +1,5 @@
 var auth = firebase.auth();
 
-
-
-onauthchange();
-
-
-
 const login = document.querySelector('#login');
 login.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -22,25 +16,3 @@ login.addEventListener('submit', (e) => {
         window.location = 'dashboard.php'
     })
 })
-
-const log_in = document.getElementById("in");
-log_in.addEventListener('click', (e) => {
-    e.preventDefault();
-    onauthchange();
-})
-
-
-
-function onauthchange() {
-    auth.onAuthStateChanged(user => {
-        if (user) {
-            log_in.className.add = 'd-none'
-            out.className.remove = 'd-none'
-
-        }
-        if (!user) {
-            log_in.className.remove = 'd-none'
-            out.className.add = 'd-none'
-        }
-    })
-}

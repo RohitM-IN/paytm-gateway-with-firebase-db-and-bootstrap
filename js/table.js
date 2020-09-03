@@ -24,7 +24,7 @@ auth.onAuthStateChanged(user => {
 
 function createcell(cell) {
     if (!del) emptytable()
-    $("table tbody").append(cell)
+    $("#ipi-table > tbody").append(cell)
     $("table").trigger("update");
 }
 

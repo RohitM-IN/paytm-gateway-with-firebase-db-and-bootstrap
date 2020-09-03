@@ -39,6 +39,7 @@
 <link rel="stylesheet" href="css/nav.css">
     <script src="https://www.gstatic.com/firebasejs/7.17.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.17.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.17.0/firebase-firestore.js"></script>
     <script src="js/db.js"></script>
     <script src="js/checklogin.js"></script>
 </head>

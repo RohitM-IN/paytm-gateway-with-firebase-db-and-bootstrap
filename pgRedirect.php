@@ -24,7 +24,18 @@ setcookie('NAME', $DONOR_NAME , time() +60*60*3);
 setcookie('EMAIL_ID', $EMAIL_ID , time() +60*60*3);
 setcookie('CUST_ID', $CUST_ID  , time() +60*60*3);
 setcookie('Anonymous', $Anonymous , time() +60*60*3);
-
+if(!isset($_COOKIE['NAME']) && !isset($_COOKIE['CUST_ID']) && !isset($_COOKIE['EMAIL_ID'])){ 
+    $_COOKIE['NAME'] = "NAN";
+    $_COOKIE['CUST_ID'] = "NAN";
+    $_COOKIE['EMAIL_ID'] = "NAN";
+?>
+<script>
+alert("Please Enable Cookies for this site");
+window.location = 'index.php';
+</script>
+<?php
+}
+					
 
 // Create an array having all required parameters for creating checksum.
 $paramList["MID"] = PAYTM_MERCHANT_MID;
@@ -62,7 +73,7 @@ $checkSum = getChecksumFromArray($paramList,PAYTM_MERCHANT_KEY);
         <i class="fa fa-spinner fa-pulse fa-3x fa-fw text-center"></i>
     </div>
     <!-- Finally Sending Data to paytm -->
-    <form method="post" action="<?php echo PAYTM_TXN_URL ?>" name="f1">
+    <form method="post" action="<?php echo PAYTM_TXN_URL ?>" name="paytm">
         <table style="border: 1px solid black;">
             <tbody>
                 <?php
@@ -76,7 +87,7 @@ $checkSum = getChecksumFromArray($paramList,PAYTM_MERCHANT_KEY);
         </table>
         <script type="text/javascript">
         setTimeout(() => {
-            document.f1.submit()
+            document.paytm.submit()
         }, 2000);
         </script>
     </form>

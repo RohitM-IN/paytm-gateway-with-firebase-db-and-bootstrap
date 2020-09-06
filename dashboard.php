@@ -11,7 +11,7 @@ include_once("./lib/cookie_aleart.php");
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="fonts/font-awesome.min.css">
     <link rel="stylesheet" href="css/Data-Table-with-Search-Sort-Filter-and-Zoom-using-TableSorter.css">
-<link rel="stylesheet" href="css/nav.css">
+    <link rel="stylesheet" href="css/nav.css">
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.2/css/theme.bootstrap_4.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
@@ -36,28 +36,10 @@ include_once("./lib/cookie_aleart.php");
 </head>
 
 <body>
-    <div>
-        <nav class="navbar navbar-light navbar-expand-md sticky-top navigation-clean-button"
-            style="height:80px;background-color:#37434d;color:#ffffff;">
-            <div class="container-fluid"><a class="navbar-brand" href="#"><i
-                        class="fa fa-globe"></i> Dashboard</a><button data-toggle="collapse" class="navbar-toggler"
-                    data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span
-                        class="navbar-toggler-icon"></span></button>
-                <div class="collapse navbar-collapse" id="navcol-1">
-                    <ul class="nav navbar-nav ml-auto">
-                        <li role="presentation" class="nav-item"><a class="nav-link" style="color:#ffffff;"
-                                href="index.php"><i class="fa fa-home"></i> Home</a></li>
-                        <li role="presentation" id="out" class="nav-item"><a class="nav-link" style="color:#ffffff;"
-                                href="signout.php"><i id="inorout_class" class="fa fa-sign-out"></i> Sign
-                                Out</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </div>
+    <?php include('./modules/header_default.php') ?>
     <script src="js/table.js"></script>
     <h2>Orders</h2>
-    <div class="container">
+    <div class="container content">
         <div class="card" id="TableSorterCard">
             <div class="row table-topper align-items-center">
                 <div class="col-4 text-left" style="margin: 0px;padding: 5px 15px;"><button
@@ -226,7 +208,7 @@ include_once("./lib/cookie_aleart.php");
             </div>
         </div>
     </div>
-
+    <?php include('./modules/footer.php') ?>
 </body>
 
 </html>

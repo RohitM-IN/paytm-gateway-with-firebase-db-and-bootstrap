@@ -2,7 +2,8 @@
 	header("Pragma: no-cache");
 	header("Cache-Control: no-cache");
     header("Expires: 0");
-	include_once("./lib/cookie_aleart.php");
+    include_once("./lib/cookie_aleart.php");
+    session_start();
 ?>
 <!DOCTYPE html PUBLIC>
 <html>
@@ -19,18 +20,25 @@
         integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="./css/main.css">
     <link rel="stylesheet" href="./css/complete.css">
+    <script src="js/html2pdf.bundle.min.js"></script>
 </head>
 
 <body class="">
+    <?php include('./modules/header.php') ?>
 
-    <form method="post" action="javascript: submitForm()" name="f1">
+    <form method="post" action="javascript: submitForm()" name="f1" id="f2">
         <table border="1">
             <tbody>
                 <?php
+                
 			foreach($_POST as $paramName =>  $paramValue) {
+                $_SESSION[$paramName] = $paramValue;
 				//echo '<label>'. $paramName .'</label>';
 				echo '<input class="d-none" name="' . $paramName .'" id="' . $paramName .'" value="' . $paramValue . '">';
-			}
+            }
+            $_SESSION['EMAIL_ID'] = $_COOKIE['EMAIL_ID'];
+            $_SESSION['NAME'] = $_COOKIE['NAME'];
+            $_SESSION['CUST_ID'] = $_COOKIE['CUST_ID'];
 			//echo '<label> Email </label>';
 			echo '<input class="d-none" name="Email_ID" id="Email_ID" value="' . $_COOKIE['EMAIL_ID'] . '">';
 			//echo '<label> name </label>';
@@ -54,14 +62,16 @@
 	$icon = "";
 	$color = "";
 	$link = "";
-	$date = "";
+    $date = "";
+    $visible = 'd-none';
 if($_POST['RESPCODE'] == 01	){
 	$title = "Order Successful";
 	$message = "Successfully placed";
 	$button = "Back to home";
 	$icon = '<i class="fa fa-check fa-4x fa-inverse" aria-hidden="true"></i>';
 	$color = "lightgreen";
-	$link = 'TxnStatus.php';
+    $link = 'TxnStatus.php';
+     $visible = 'd-block';
 	if($_POST['TXNDATE'] == 'NAN'){
 		$date = '';
 	}else{
@@ -74,7 +84,8 @@ if($_POST['RESPCODE'] == 01	){
 	$button = "Check Status";
 	$icon = '<i class="fa fa-exclamation-triangle fa-4x fa-inverse" aria-hidden="true"></i>';
 	$color = "indianred";
-	$link = 'TxnStatus.php?ORDER_ID=' . $_POST['ORDERID'];
+    $link = 'TxnStatus.php?ORDER_ID=' . $_POST['ORDERID'];
+    $visible = 'd-none';
 	if($_POST['TXNDATE'] == 'NAN'){
 		$date = '';
 	}else{
@@ -88,7 +99,8 @@ else {
 	$button = "Try Again";
 	$icon = '<i class="fa fa-times fa-4x fa-inverse" aria-hidden="true"></i>';
 	$color = 'lightcoral';
-	$link = '/order.php';
+    $link = 'order.php';
+    $visible = 'd-none';
 	if($_POST['TXNDATE'] == 'NAN'){
 		$date = '';
 	}else{
@@ -113,9 +125,14 @@ else {
             <div class="modal-footer">
                 <a type="button" class="btn btn-block" style="background: <?php echo $color ?>"
                     href="<?php echo $link ?>"><?php echo $button ?></a>
+                <input type="submit" class="btn <?php echo $visible ?>" value="Export as PDF" name="button1"
+                    onclick="return invoiceredirect();">
+
             </div>
         </div>
     </div>
+
+
     <!-- > 
 example echo given below it will be something like ' echo  $_POST['TXNID']  '
 
@@ -149,11 +166,13 @@ CHECKSUMHASH = nAL63DvimDEl***********************************CnkgptCecendrTJUa1
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
         integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous">
     </script>
+    <script src="js/invoice.js"></script>
     <!-- saving to firestore db -->
     <script src="js/db.js"></script>
     <script src="./js/firestore.js">
     submitForm()
     </script>
+    <?php include('./modules/footer.php') ?>
 
 </body>
 

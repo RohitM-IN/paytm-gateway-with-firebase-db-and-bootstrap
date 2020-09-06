@@ -43,46 +43,56 @@ else {
 
 ?>
 <header>
-<link href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round" rel="stylesheet">
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 </header>
 <h1 class="text-center">Please Wait ....<h1>
-<div class="d-flex justify-content-center">
-	<i class="fa fa-spinner fa-pulse fa-3x fa-fw text-center"></i>
-	</div>
-<form method="post" action="status.php" name="f1">
-	<table style="border: 1px solid black;">
-		<tbody>
-		<?php
-		foreach($_POST as $paramName =>  $paramValue) { 
-			?>
-			<input type="hidden" name="<?php echo $paramName ?>" id="<?php echo $paramName ?>" value="<?php echo $paramValue ?>">
-			<input type="hidden" name="NAME" id="NAME" value="<?php echo $_COOKIE['NAME']?>">
-			<input type="hidden" name="CUST_ID" id="CUST_ID" value="<?php echo $_COOKIE['CUST_ID']?>">
-			<input type="hidden" name="EMAIL_ID" id="EMAIL_ID" value="<?php echo $_COOKIE['EMAIL_ID']?>">
-			<input type="hidden" name="Anonymous" id="Anonymous" value="<?php echo $_COOKIE['Anonymous']?>">
-			<?php
-			if(!isset($_POST['TXNDATE']) && !isset($_POST['GATEWAYNAME'])){ ?>
-				<input type="hidden" name="TXNID" id="TXNID" value="NAN">
-				<input type="hidden" name="PAYMENTMODE" id="PAYMENTMODE" value="NAN">
-				<input type="hidden" name="TXNDATE" id="TXNDATE" value="NAN">
-				<input type="hidden" name="GATEWAYNAME" id="GATEWAYNAME" value="NAN">
-				<input type="hidden" name="BANKTXNID" id="BANKTXNID" value="NAN">
-			<?php
-			}
-		}
-		?>
-		</tbody>
-	</table>
-	<script type="text/javascript">
-		setTimeout(() => {
-			document.f1.submit()
-		}, 1500);
-	</script>
-	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-</form>
+        <div class="d-flex justify-content-center">
+            <i class="fa fa-spinner fa-pulse fa-3x fa-fw text-center"></i>
+        </div>
+        <form method="post" action="status.php" name="f1">
+            <table style="border: 1px solid black;">
+                <tbody>
+                    <?php
+					foreach($_POST as $paramName =>  $paramValue) { 
+						?>
+                    <input type="hidden" name="<?php echo $paramName ?>" id="<?php echo $paramName ?>"
+                        value="<?php echo $paramValue ?>">
+                    <?php
+					}
+					?>
+                    <?php
+					if(!isset($_POST['TXNDATE']) && !isset($_POST['GATEWAYNAME'])){ ?>
+                    <input type="hidden" name="TXNID" id="TXNID" value="NAN">
+                    <input type="hidden" name="PAYMENTMODE" id="PAYMENTMODE" value="NAN">
+                    <input type="hidden" name="TXNDATE" id="TXNDATE" value="NAN">
+                    <input type="hidden" name="GATEWAYNAME" id="GATEWAYNAME" value="NAN">
+                    <input type="hidden" name="BANKTXNID" id="BANKTXNID" value="NAN">
+                    <?php
+					}
+					?>
+                    <input type="hidden" name="NAME" id="NAME" value="<?php echo $_COOKIE['NAME']?>">
+                    <input type="hidden" name="CUST_ID" id="CUST_ID" value="<?php echo $_COOKIE['CUST_ID']?>">
+                    <input type="hidden" name="EMAIL_ID" id="EMAIL_ID" value="<?php echo $_COOKIE['EMAIL_ID']?>">
+                    <input type="hidden" name="Anonymous" id="Anonymous" value="<?php echo $_COOKIE['Anonymous']?>">
+
+                </tbody>
+            </table>
+            <script type="text/javascript">
+            setTimeout(() => {
+                document.f1.submit()
+            }, 1500);
+            </script>
+            <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+            <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+                integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+                integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+                crossorigin="anonymous"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+                integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+                crossorigin="anonymous"></script>
+        </form>

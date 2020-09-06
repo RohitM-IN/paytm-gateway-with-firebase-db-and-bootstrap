@@ -36,7 +36,7 @@
     <meta name="GENERATOR" content="Evrsoft First Page">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
         integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-<link rel="stylesheet" href="css/nav.css">
+    <link rel="stylesheet" href="css/nav.css">
     <script src="https://www.gstatic.com/firebasejs/7.17.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.17.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.17.0/firebase-firestore.js"></script>
@@ -45,29 +45,11 @@
 </head>
 
 <body class="">
-    <div>
-        <nav class="navbar navbar-light navbar-expand-md sticky-top navigation-clean-button"
-            style="height:80px;background-color:#37434d;color:#ffffff;">
-            <div class="container-fluid"><a class="navbar-brand" href="#"><i
-                        class="fa fa-globe"></i> Dashboard</a><button data-toggle="collapse" class="navbar-toggler"
-                    data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span
-                        class="navbar-toggler-icon"></span></button>
-                <div class="collapse navbar-collapse" id="navcol-1">
-                    <ul class="nav navbar-nav ml-auto">
-                        <li role="presentation" class="nav-item"><a class="nav-link" style="color:#ffffff;"
-                                href="index.php"><i class="fa fa-home"></i> Home</a></li>
-                        <li role="presentation" id="out" class="nav-item"><a class="nav-link" style="color:#ffffff;"
-                                href="signout.php"><i id="inorout_class" class="fa fa-sign-out"></i> Sign
-                                Out</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </div>
+    <?php include('./modules/header_default.php') ?>
     <div class="container">
         <h2>Transaction status query</h2>
         <form method="post" action="">
-            <table border="1">
+            <table style="border: 1px solid nopadding">
                 <tbody>
                     <tr>
                         <td><label>ORDER_ID::*</label></td>
@@ -87,7 +69,7 @@
 		{ 
 		?>
             <h2>Response of status query:</h2>
-            <table style="border: 1px solid nopadding" border="0">
+            <table style="border: 1px solid nopadding">
                 <tbody>
                     <?php
 					foreach($responseParamList as $paramName => $paramValue) {
@@ -108,6 +90,7 @@
 		?>
         </form>
     </div>
+    <?php include('./modules/footer.php') ?>
 </body>
 
 </html>

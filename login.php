@@ -40,7 +40,13 @@
         </nav>
     </div>
     <div class="login-clean">
+
         <form method="post" id="login">
+            <p id="error" class="text-danger"></p>
+            <div class="row">
+                <p id="Success" class="text-success"></p><span id="timespan" class="text-success"></span>
+            </div>
+
             <h2 class="sr-only">Login Form</h2>
             <div class="illustration"><i class="icon ion-android-person"></i></div>
             <div class="form-group"><input class="form-control" id="email" type="email" name="email"
@@ -49,12 +55,17 @@
                     placeholder="Password">
             </div>
             <div class="form-group"><button class="btn btn-primary btn-block" type="submit">Log In</button></div>
+
         </form>
+
     </div>
     <script src="js/jquery.min.js"></script>
-    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js">
+    < script src = "bootstrap/js/bootstrap.min.js" >
+    </script>
 
     <script src="js/login.js"></script>
+    <?php include('./modules/footer.php') ?>
 </body>
 
 </html>

@@ -1,3 +1,4 @@
+var auth = firebase.auth();
 var messagesRef = db.collection("Donations")
 let del = false;
 let snapshot
